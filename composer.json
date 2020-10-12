@@ -5,13 +5,21 @@
         "php": ">=7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-json": "*",
+        "doctrine/annotations": "^1.0",
+        "phpdocumentor/reflection-docblock": "^5.2",
+        "sensio/framework-extra-bundle": "^5.6",
         "symfony/console": "5.1.*",
         "symfony/dotenv": "5.1.*",
         "symfony/flex": "^1.3.1",
         "symfony/framework-bundle": "5.1.*",
+        "symfony/property-access": "5.1.*",
+        "symfony/property-info": "5.1.*",
+        "symfony/serializer": "5.1.*",
         "symfony/yaml": "5.1.*"
     },
     "require-dev": {
+        "sensiolabs-de/deptrac-shim": "^0.8.2"
     },
     "config": {
         "optimize-autoloader": true,

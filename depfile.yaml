@@ -1,0 +1,66 @@
+paths:
+    - ./src
+
+exclude_files:
+    - .*test.*
+
+layers:
+
+    -   name: Entity
+        collectors:
+            -   type: className
+                regex: .*App\\Domain\\Entity\\.*
+
+    -   name: Repository
+        collectors:
+            -   type: className
+                regex: .*App\\Domain\\Repository\\.*
+
+    -   name: UseCase
+        collectors:
+            -   type: className
+                regex: .*App\\Domain\\UseCase\\.*
+
+    -   name: Controller
+        collectors:
+            -   type: className
+                regex: .*App\\Controller\\.*
+
+    -   name: Command
+        collectors:
+            -   type: className
+                regex: .*App\\Command\\.*
+
+    -   name: Infrastructure
+        collectors:
+            -   type: className
+                regex: .*App\\Infrastructure\\.*
+
+ruleset:
+
+# Domain
+
+    Entity: ~ # these are our domain objects
+
+    Repository: # defines interfaces used to interact with our domain objects
+        - Entity
+
+    UseCase: # defines application business rules
+        - Entity
+        - Repository
+
+# Framework
+
+    Controller:
+        - Entity
+        - Repository
+        - UseCase
+
+    Command:
+        - Entity
+        - Repository
+        - UseCase
+
+    Infrastructure:
+        - Entity
+        - Repository
