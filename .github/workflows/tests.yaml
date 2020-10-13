@@ -1,0 +1,27 @@
+name: Tests
+
+on:
+    push:
+    pull_request:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+
+            -   name: Cache Composer packages
+                id: composer-cache
+                uses: actions/cache@v2
+                with:
+                    path: vendor
+                    key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: |
+                        ${{ runner.os }}-php-
+
+            -   name: Install php dependencies
+                if: steps.composer-cache.outputs.cache-hit != 'true'
+                run: composer install --prefer-dist --no-progress --no-suggest
+
+            -   name: Run deptrac
+                run: php vendor/bin/deptrac analyze
